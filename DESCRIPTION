@@ -1,13 +1,18 @@
 Package: marbleCircuit
-Title: What the Package Does (One Line, Title Case)
-Version: 0.0.0.9000
+Title: Provides functionality for investigating the puzzle game Marble Circuit
+Version: 0.0.0.9001
 Authors@R: 
     person(given = "Jarad",
            family = "Niemi",
            role = c("aut", "cre"),
            email = "niemi@iastate.edu",
            comment = c(ORCID = "0000-0002-5079-158X"))
-Description: What the package does (one paragraph).
+Description: Marble Circuit is a puzzle game made by MindWare that has 64 
+    challenge cards with 2 to 10 tiles missing. The goal for the player is to
+    determine where the missing tiles should be placed so that the 8 marbles 
+    running down the puzzle will accumulate in the targets as indicated on the
+    challenge card. This package provides functionality to determine challenge
+    difficulty. 
 License: MIT + file LICENSE
 Suggests: 
     testthat (>= 3.0.0)
@@ -15,6 +20,6 @@ Config/testthat/edition: 3
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.1.1
+RoxygenNote: 7.2.1
 Depends: 
     R (>= 2.10)

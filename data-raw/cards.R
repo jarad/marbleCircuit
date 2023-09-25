@@ -40,7 +40,10 @@ tiles <- d %>%
                            `split`      = "blue",
                            `cross-over` = "pink",
                            `right exit` = "orange",
-                           `left exit`  = "yellow")) %>%
+                           `left exit`  = "yellow"),
+
+         # Reorder factor to alphabetical order
+         tile = as.factor(as.character(tile))) %>%
   arrange(type, number, slot) %>%
   select(-color)
 

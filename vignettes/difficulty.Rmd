@@ -1,0 +1,61 @@
+---
+title: "Difficulty"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{difficulty}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library("marbleCircuit")
+library("tidyverse"); theme_set(theme_bw())
+```
+
+```{r summarize}
+d <- data.frame(Challenge = 1:64) %>%
+  group_by(Challenge) %>%
+  mutate(
+    Missing = sum(missing(Challenge)),
+    Difficulty = permutations(missing(Challenge)))
+```
+
+A simplistic way to consider difficulty is simply the number of tiles that
+are missing. 
+Based on the graph below it looks like this is exactly how the challenges
+are numbered. 
+
+```{r missing}
+ggplot(d, aes(Challenge, Missing)) + 
+  geom_point() + 
+  scale_y_log10() +
+  labs(title = "Number of Missing Tiles")
+```
+
+A more sophisticated approach to difficulty recognizes that if there are
+repeated tiles that are missing, 
+then the difficulty is not as high as when there are more distinct
+tiles. 
+The graph below plots this notion of difficulty. 
+
+```{r difficulty}
+ggplot(d, aes(Challenge, Difficulty)) + 
+  geom_point() + 
+  scale_y_log10() +
+  labs(title = "Difficulty of Challenges")
+```
+
+The y-axis in this graph is on a logarithmic axis.
+Thus the same distance on the y-axis should be understood as a multiplicative change in the difficulty. 
+So moving from 10 to 100 to 1,000 to 10,000 which is the same distance on the 
+y-axis is clearly a 10-fold change in difficulty every time. 
+
+Notice that the difficulty is no longer monotonic as there are times
+when higher numbered challenges have lower difficulty. 
